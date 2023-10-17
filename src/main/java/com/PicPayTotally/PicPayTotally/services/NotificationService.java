@@ -13,7 +13,7 @@ public class NotificationService {
     @Autowired
     RestTemplate restTemplate;
 
-    public void CreateNotification(User user, String message) throws Exception {
+    public void SendNotification(User user, String message) throws Exception {
 
         String email = user.getEmail();
 

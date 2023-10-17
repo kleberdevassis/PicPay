@@ -24,6 +24,8 @@ public class TransactionService {
 
     @Autowired
     TransactionRepository transactionRepository;
+    @Autowired
+    NotificationService notificationService;
 
     public Transaction createTransaction(TransactionDTO transactionDTO) throws Exception {
 
@@ -34,7 +36,7 @@ public class TransactionService {
 
         boolean isValid = this.validateUserTransaction(sender, transactionDTO.value());
 
-        if(!isValid){
+        if (!isValid) {
             throw new Exception("transaction canceled contact support");
         }
 
@@ -50,6 +52,9 @@ public class TransactionService {
         userService.saveUser(sender);
         userService.saveUser(receiver);
         transactionRepository.save(newTransaction);
+
+        //this.notificationService.SendNotification(sender,"transaction sent whit success");
+        //this.notificationService.SendNotification(receiver,"transaction received whit success");
 
         return newTransaction;
 
