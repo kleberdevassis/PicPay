@@ -23,19 +23,20 @@ public class ControllerTransactions {
     TransactionService transactionService;
 
     @PostMapping("/users")
-    public ResponseEntity createUser(@RequestBody UserDTO userDTO){
+    public ResponseEntity createUser(@RequestBody UserDTO userDTO) {
         User user = userService.createUser(userDTO);
         return new ResponseEntity(user, HttpStatus.CREATED);
     }
 
     @GetMapping("/lista")
-    public ResponseEntity<List<User>> findUsers(){
+    public ResponseEntity<List<User>> findUsers() {
         List<User> users = userService.findAllUsers();
-        return new ResponseEntity<>(users,HttpStatus.OK);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    @PostMapping("/transactions")
     public ResponseEntity<Transaction> createTransaction(@RequestBody TransactionDTO transactionDTO) throws Exception {
         Transaction transaction = transactionService.createTransaction(transactionDTO);
-        return new ResponseEntity<>(transaction,HttpStatus.CREATED);
+        return new ResponseEntity<>(transaction, HttpStatus.CREATED);
     }
 }
